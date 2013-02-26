@@ -27,21 +27,21 @@
             obj         : null,
             maxWidth    : 0,
             divObj      : $this.coreObj,
-            winWidth    : jQuery(window).width(),
-            winHeight   : jQuery(window).height(),
+            winWidth    : $(window).width(),
+            winHeight   : $(window).height(),
 
             init : function(opt){
                 this.obj = opt.obj;
                 this.divObj = this.wrapResponsive();
-                if(jQuery("body .photoZoom-Large").length == 0){
-                    jQuery("body").append(this.divObj);
+                if($("body .photoZoom-Large").length == 0){
+                    $("body").append(this.divObj);
                 }
                 this.bindEvents();
             },
             findImages : function(){
                 var images = false;
                 if(this.obj != null){
-                    images = jQuery(this.obj).find("img");
+                    images = $(this.obj).find("img");
                     if(images.length == 0){
                         images = false;
                     }
@@ -51,8 +51,8 @@
             bindEvents:function(){
                 var images = this.findImages();
                 if(images){
-                    jQuery.each(images,function(i,imgObj){
-                        jQuery(imgObj).live({
+                    $.each(images,function(i,imgObj){
+                        $(imgObj).live({
                             mouseenter : function(){
                                 functions.whenHover(this);
                             },
@@ -67,8 +67,8 @@
                 }
             },
             whenHover:function(imgObj){
-                var imgSrc = jQuery(imgObj);
-                this.divObj = jQuery("body .photoZoom-Large");
+                var imgSrc = $(imgObj);
+                this.divObj = $("body .photoZoom-Large");
                 this.divObj.find("img").css("margin-top","0px");
                 this.images(imgSrc.attr("src"));
                 $this.options.onMouseOver(imgObj);
@@ -77,7 +77,7 @@
             whenMouseMove:function(imgObj,e){
 
                 var tmpImg = new Image();
-                tmpImg.src = jQuery(imgObj).attr("src");
+                tmpImg.src = $(imgObj).attr("src");
                 var w = 0, h = 0,maxWidth = 0,maxHeight = 0,leftPos = 0,topPos = 0,rightPos = 0, x = 0, y = 0;
 
                 w = this.winWidth;
@@ -122,13 +122,13 @@
                 $this.options.onMouseOut(imgObj);
             },
             wrapResponsive:function(){
-                $newImage = jQuery("<img />");
+                $newImage = $("<img />");
                 $newImage.css({"max-width"  :"100%",
                     "position"   :"relative",
                     "padding"    :"0px",
                     "margin-top" :"40%"})
                     .attr("src","images/zoomLoader.gif");
-                $newImage = jQuery("<div class='photoZoom-Large'></div>")
+                $newImage = $("<div class='photoZoom-Large'></div>")
                     .css($.extend($this.options.zoomStyle,{ "display": "none","position": "absolute"}))
                     .html($newImage);
                 return $newImage;
