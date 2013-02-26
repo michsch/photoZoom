@@ -25,6 +25,7 @@ Simple, lightweight jQuery plugin to show zoomed view of image based on screen d
 ### Options
 
     - zoomStyle     // Write your own css for large image
+    - attribute     // Set the attribute you want to use for the larger image (default: 'src')
 
 #### Example
 
@@ -33,7 +34,8 @@ Simple, lightweight jQuery plugin to show zoomed view of image based on screen d
          $("body").photoZoom({ zoomStyle : { "border":"1px solid #ccc",
                                              "background-color":"#fff",
                                              "box-shadow":"0 0 5px #888"
-                                           }
+                                           },
+                               attribute : 'data-img-large'
                             });
      });
 ```
