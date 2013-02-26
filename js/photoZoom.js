@@ -16,7 +16,8 @@
                 "box-shadow"         : "0 0 5px #888",
                 "-webkit-box-shadow" : "0 0 5px #888",
                 "text-align"         : "center"},
-            onMouseOut    : function(){}        // callback on mouse out
+            onMouseOut    : function(){},       // callback on mouse out
+            attribute  : "src"
         };
         $this = $(this);
         $this.options = $.extend({},defaults, options);
@@ -70,14 +71,17 @@
                 var imgSrc = $(imgObj);
                 this.divObj = $("body .photoZoom-Large");
                 this.divObj.find("img").css("margin-top","0px");
-                this.images(imgSrc.attr("src"));
+                if ($this.options.attribute !== 'src' && imgSrc.attr( $this.options.attribute ) === void 0) {
+                    $this.options.attribute = 'src';
+                }
+                this.images(imgSrc.attr( $this.options.attribute ));
                 $this.options.onMouseOver(imgObj);
                 this.divObj.show();
             },
             whenMouseMove:function(imgObj,e){
 
                 var tmpImg = new Image();
-                tmpImg.src = $(imgObj).attr("src");
+                tmpImg.src = $(imgObj).attr( $this.options.attribute );
                 var w = 0, h = 0,maxWidth = 0,maxHeight = 0,leftPos = 0,topPos = 0,rightPos = 0, x = 0, y = 0;
 
                 w = this.winWidth;
