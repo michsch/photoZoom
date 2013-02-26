@@ -33,16 +33,16 @@
             init : function(opt){
                 this.obj = opt.obj;
                 this.divObj = this.wrapResponsive();
-                if($("body .photoZoom-Large").length == 0){
+                if($("body .photoZoom-Large").length === 0){
                     $("body").append(this.divObj);
                 }
                 this.bindEvents();
             },
             findImages : function(){
                 var images = false;
-                if(this.obj != null){
+                if(this.obj !== null){
                     images = $(this.obj).find("img");
-                    if(images.length == 0){
+                    if(images.length === 0){
                         images = false;
                     }
                 }
@@ -87,7 +87,7 @@
 
                 var ratio = (w / 100 * 55);
                 topPos = (y+10);
-                var imgObj = this.divObj.find("img");
+                imgObj = this.divObj.find("img");
 
                 if(x > ratio){
                     // Right position
